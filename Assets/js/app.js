@@ -1,19 +1,18 @@
-const appid = '1181ccaa859f52c635fa081df8d1733c'
-let cityArr = []
+const appid = 'c8eba1bdd27115a572cf54b8b1311b5c'
+let cityArr = ['']
 const searchInput = document.getElementById('searchInput')
 const savedCities = document.getElementById('savedCities')
 const currWeather = document.getElementById('currWeather')
 const forecast = document.getElementById('forecast')
 document.getElementById('search').addEventListener('click', () => {
   event.preventDefault()
-  getUrl1(searchInput.value)
+  let searchField = searchInput.value
+  !searchInput.value ? searchField = cityArr[cityArr.length - 1]: searchField = searchInput.value
+  getUrl1(searchField)
 })
 
 function getUrl1(searchVal) {
   //event.preventDefault()
-  // no search input, defaults to last city entered
-  !searchInput.value ? searchInput.value = cityArr[cityArr.length - 1] : console.log('red')
-
   //Current Weather - https://openweathermap.org/current#geocoding
   const requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${searchVal},USA&units=imperial&appid=${appid}`
   //console.log(requestUrl)
@@ -65,12 +64,14 @@ function setCiti() {
 // gets the list of cities searched from local storage and keeps the list displayed 
 const getCities = (() => {
   if (!localStorage.cities) {
+    cityArr.push('San Francisco')
     let store = JSON.stringify(cityArr)
     localStorage.setItem('cities', store)
   } else {
     cityArr = (JSON.parse(localStorage.getItem('cities')))
     citiesSearched() // populates cities searched automatically
     getUrl1(cityArr[cityArr.length - 1]) //curr weather loaded with last city searched automatically
+    console.log(searchInput.value, 'load')
   }
 })()
 
@@ -94,16 +95,20 @@ function currentWeather(temp, humidity, wind, uv) {
   }
 }
 
+// creates city search buttons
 function citiesSearched() {
   const btn = document.querySelectorAll('button')
   for (let i = 0; i < cityArr.length; i++) {
     const newCity = document.createElement('button')
-    newCity.setAttribute('data', `a-${i}`)
     newCity.textContent = cityArr[i]
     savedCities.appendChild(newCity)
     newCity.addEventListener('click', () => {
-      console.log(newCity.getAttribute('data'))
       getUrl1(newCity.textContent)
     })
   }
 }
+
+//HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY
+//HOW TO HANDLE AN EMPTY CITY ARRAY - make sure there is never an empty array...
+//HOW TO HANDLE BLANK INPUT ON CLICK - make sure there is never an empty array...
+
