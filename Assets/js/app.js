@@ -5,14 +5,17 @@ const savedCities = document.getElementById('savedCities')
 const currWeather = document.getElementById('currWeather')
 const forecast = document.getElementById('forecast')
 document.getElementById('search').addEventListener('click', () => {
-  getUrl1()
+  event.preventDefault()
+  getUrl1(searchInput.value)
 })
 
-// on search button click fetches data for dashboard and runs helper functions
-function getUrl1() {
-  event.preventDefault()
+function getUrl1(searchVal) {
+  //event.preventDefault()
+  // no search input, defaults to last city entered
+  !searchInput.value ? searchInput.value = cityArr[cityArr.length - 1] : console.log('red')
+
   //Current Weather - https://openweathermap.org/current#geocoding
-  var requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value},USA&units=imperial&appid=${appid}`
+  const requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${searchVal},USA&units=imperial&appid=${appid}`
   //console.log(requestUrl)
   fetch(requestUrl1)
     .then(function (response) {
@@ -31,7 +34,7 @@ function getUrl1() {
 function getUrl2(lat, lon) {
   // current + 5day + UI - https://openweathermap.org/api/one-call-api
   var requestUrl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${appid}`
-  
+
   fetch(requestUrl2)
     .then(function (response) {
       return response.json();
@@ -43,46 +46,64 @@ function getUrl2(lat, lon) {
     });
 }
 
-//displays current city being searched name and date
+// displays current city name/date
 function currCN(num, name) {
   const timestamp = num * 1000;
   const formatted = moment(timestamp).format('(M/DD/YYYY)');
   document.getElementById('cityName').innerHTML = name + ' ' + formatted
 }
-//sets the new search item to local storage and displays it
+
+// sets a new search item in local storage and displays updated city search list
 function setCiti() {
   cityArr.includes(searchInput.value) ? null : cityArr.push(searchInput.value)
   let store = JSON.stringify(cityArr)
   localStorage.setItem('cities', store)
   searchInput.value = ''
-  savedCities.innerHTML = JSON.parse(localStorage.getItem('cities'))
+  //HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY
 }
-//gets the lists of searched cities from local storage and displays them
+
+// gets the list of cities searched from local storage and keeps the list displayed 
 const getCities = (() => {
   if (!localStorage.cities) {
     let store = JSON.stringify(cityArr)
     localStorage.setItem('cities', store)
   } else {
     cityArr = (JSON.parse(localStorage.getItem('cities')))
-    savedCities.innerHTML = JSON.parse(localStorage.getItem('cities'))
+    citiesSearched() // populates cities searched automatically
+    getUrl1(cityArr[cityArr.length - 1]) //curr weather loaded with last city searched automatically
   }
 })()
+
+// displays current weather conditions
 function currentWeather(temp, humidity, wind, uv) {
   document.getElementById('uvi')
-  
-  currWeather.innerHTML = 
-  `Temperature: ${temp} \u00B0F <br>
+  currWeather.innerHTML =
+    `Temperature: ${temp} \u00B0F <br>
    Humidity: ${humidity}% <br> 
    Wind: ${wind} MPH <br> 
-   UV Index: <span id='uvi'> ${uv} </span>` 
+   UV Index: <span id='uvi'> ${uv} </span>`
 
-   if (uv > 8) {
+  if (uv > 8) {
     uvi.setAttribute('style', 'background-color: red')
-   } else if( uv > 5) {
+  } else if (uv > 5) {
     uvi.setAttribute('style', 'background-color: orange')
-   } else if( uv> 2) {
+  } else if (uv > 2) {
     uvi.setAttribute('style', 'background-color: yellow')
-   } else {
+  } else {
     uvi.setAttribute('style', 'background-color: green')
-   }
+  }
+}
+
+function citiesSearched() {
+  const btn = document.querySelectorAll('button')
+  for (let i = 0; i < cityArr.length; i++) {
+    const newCity = document.createElement('button')
+    newCity.setAttribute('data', `a-${i}`)
+    newCity.textContent = cityArr[i]
+    savedCities.appendChild(newCity)
+    newCity.addEventListener('click', () => {
+      console.log(newCity.getAttribute('data'))
+      getUrl1(newCity.textContent)
+    })
+  }
 }
