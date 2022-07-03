@@ -30,15 +30,16 @@ function getUrl1() {
 // retrieves data from an API
 function getUrl2(lat, lon) {
   // current + 5day + UI - https://openweathermap.org/api/one-call-api
-  var requestUrl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&unit=imperial&appid=${appid}`
+  var requestUrl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${appid}`
   
   fetch(requestUrl2)
     .then(function (response) {
       return response.json();
     })
-    .then(function (dataForecast) {
+    .then(function (dataF) {
       // Use the console to examine the response
-      console.log(dataForecast)
+      console.log(dataF)
+      currentWeather(dataF.current.temp, dataF.current.humidity, dataF.current.wind_speed, dataF.current.uvi)
     });
 }
 
@@ -48,7 +49,6 @@ function currCN(num, name) {
   const formatted = moment(timestamp).format('(M/DD/YYYY)');
   document.getElementById('cityName').innerHTML = name + ' ' + formatted
 }
-
 //sets the new search item to local storage and displays it
 function setCiti() {
   cityArr.includes(searchInput.value) ? null : cityArr.push(searchInput.value)
@@ -67,4 +67,22 @@ const getCities = (() => {
     savedCities.innerHTML = JSON.parse(localStorage.getItem('cities'))
   }
 })()
-//current time to populate
+function currentWeather(temp, humidity, wind, uv) {
+  document.getElementById('uvi')
+  
+  currWeather.innerHTML = 
+  `Temperature: ${temp} \u00B0F <br>
+   Humidity: ${humidity}% <br> 
+   Wind: ${wind} MPH <br> 
+   UV Index: <span id='uvi'> ${uv} </span>` 
+
+   if (uv > 8) {
+    uvi.setAttribute('style', 'background-color: red')
+   } else if( uv > 5) {
+    uvi.setAttribute('style', 'background-color: orange')
+   } else if( uv> 2) {
+    uvi.setAttribute('style', 'background-color: yellow')
+   } else {
+    uvi.setAttribute('style', 'background-color: green')
+   }
+}
