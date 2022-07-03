@@ -1,14 +1,13 @@
 const appid = '1181ccaa859f52c635fa081df8d1733c'
+let saveCitiArr = []
 const searchInput = document.getElementById('searchInput')
 const savedCities = document.getElementById('savedCities')
 const currWeather = document.getElementById('currWeather')
 const forecast = document.getElementById('forecast')
+document.getElementById('search').addEventListener('click', () => {
+  getUrl1()
+})
 
-//var lat = 34.0522, lon = -118.2437
-
-const timestamp = 1656874800 * 1000;
-const formatted = moment(timestamp).format('L');
-console.log(formatted); // "02/24/2018"
 
 function getUrl1() {
   event.preventDefault()
@@ -23,7 +22,8 @@ function getUrl1() {
       // Use the console to examine the response
       console.log(data);
       // TODO: Loop through the data and generate your HTML AND/OR other functions
-      getUrl2(data.coord.lat, data.coord.lon)   
+      saveCiti()
+      getUrl2(data.coord.lat, data.coord.lon)
     });
 }
 
@@ -37,11 +37,26 @@ function getUrl2(lat, lon) {
     })
     .then(function (data) {
       // Use the console to examine the response
-      console.log(data)  
+      console.log(data)
+      console.log(searchInput.value)
     });
 }
 
-document.getElementById('search').addEventListener('click', () => {
-  getUrl1()
-})
+function convertDT() {
+  const timestamp = 1656874800 * 1000;
+  const formatted = moment(timestamp).format('L');
+  console.log(formatted); // "02/24/2018"  
+}
+
+function saveCiti() {
+  saveCitiArr.push(searchInput.value)
+  let store = JSON.stringify(saveCitiArr)
+  localStorage.setItem('cities', store)
+}
+
+const getCities = (() => {
+  saveCitiArr.push(JSON.parse(localStorage.getItem('cities')))
+  savedCities.innerHTML += saveCitiArr
+})()
+
 
