@@ -14,6 +14,11 @@ main {
   width: 200px;
   height: 300px;
 }
+#cityName {
+  border: 1px solid black;
+  width: fit-content;
+  height: fit-content
+}
 #currWeather {
   border: 1px solid black;
   width: 200px;

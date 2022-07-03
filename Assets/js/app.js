@@ -8,6 +8,7 @@ document.getElementById('search').addEventListener('click', () => {
   getUrl1()
 })
 
+// on search button click fetches data for dashboard and runs helper functions
 function getUrl1() {
   event.preventDefault()
   //Current Weather - https://openweathermap.org/current#geocoding
@@ -22,15 +23,15 @@ function getUrl1() {
       console.log(data);
       // TODO: Loop through the data and generate your HTML AND/OR other functions
       getUrl2(data.coord.lat, data.coord.lon)
-      convertDT(data.dt)
+      currCN(data.dt, data.name)
       setCiti()
     });
 }
-
+// retrieves data from an API
 function getUrl2(lat, lon) {
   // current + 5day + UI - https://openweathermap.org/api/one-call-api
   var requestUrl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&unit=imperial&appid=${appid}`
-
+  
   fetch(requestUrl2)
     .then(function (response) {
       return response.json();
@@ -41,15 +42,16 @@ function getUrl2(lat, lon) {
     });
 }
 
-//converts unix time stamp to local time
-function convertDT(num) {
+//displays current city being searched name and date
+function currCN(num, name) {
   const timestamp = num * 1000;
-  const formatted = moment(timestamp).format('L');
-  forecast.innerHTML = formatted
+  const formatted = moment(timestamp).format('(M/DD/YYYY)');
+  document.getElementById('cityName').innerHTML = name + ' ' + formatted
 }
+
 //sets the new search item to local storage and displays it
 function setCiti() {
-  cityArr.includes(searchInput.value) ? console.log('pink') : cityArr.push(searchInput.value)
+  cityArr.includes(searchInput.value) ? null : cityArr.push(searchInput.value)
   let store = JSON.stringify(cityArr)
   localStorage.setItem('cities', store)
   searchInput.value = ''
@@ -65,4 +67,4 @@ const getCities = (() => {
     savedCities.innerHTML = JSON.parse(localStorage.getItem('cities'))
   }
 })()
-//current time to display
+//current time to populate
