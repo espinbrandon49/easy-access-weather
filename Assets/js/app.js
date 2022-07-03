@@ -1,4 +1,9 @@
 const appid = '1181ccaa859f52c635fa081df8d1733c'
+const searchInput = document.getElementById('searchInput')
+const savedCities = document.getElementById('savedCities')
+const currWeather = document.getElementById('currWeather')
+const forecast = document.getElementById('forecast')
+
 //var lat = 34.0522, lon = -118.2437
 
 const timestamp = 1656874800 * 1000;
@@ -8,7 +13,7 @@ console.log(formatted); // "02/24/2018"
 function getUrl1() {
   event.preventDefault()
   //Current Weather - https://openweathermap.org/current#geocoding
-  var requestUrl1 = 'https://api.openweathermap.org/data/2.5/weather?q=Chicago&units=imperial&appid=' + appid
+  var requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&units=imperial&appid=${appid}`
   //console.log(requestUrl)
   fetch(requestUrl1)
     .then(function (response) {
@@ -32,13 +37,11 @@ function getUrl2(lat, lon) {
     })
     .then(function (data) {
       // Use the console to examine the response
-      console.log(data)
-      
-      const newDiv = document.createElement('div')
-      newDiv.innerHTML = data.timezone
-      document.getElementById('container').appendChild(newDiv)
+      console.log(data)  
     });
 }
 
-document.getElementById('search').addEventListener('click', getUrl1)
-//document.getElementById('url2').addEventListener('click', getUrl2)
+document.getElementById('search').addEventListener('click', () => {
+  getUrl1()
+})
+
