@@ -8,7 +8,6 @@ document.getElementById('search').addEventListener('click', () => {
   getUrl1()
 })
 
-
 function getUrl1() {
   event.preventDefault()
   //Current Weather - https://openweathermap.org/current#geocoding
@@ -22,8 +21,10 @@ function getUrl1() {
       // Use the console to examine the response
       console.log(data);
       // TODO: Loop through the data and generate your HTML AND/OR other functions
-      saveCiti()
+      
       getUrl2(data.coord.lat, data.coord.lon)
+      convertDT(data.dt)
+      saveCiti()
     });
 }
 
@@ -42,21 +43,25 @@ function getUrl2(lat, lon) {
     });
 }
 
-function convertDT() {
-  const timestamp = 1656874800 * 1000;
+function convertDT(num) {
+  const timestamp = num * 1000;
   const formatted = moment(timestamp).format('L');
-  console.log(formatted); // "02/24/2018"  
+  //console.log(formatted); // "02/24/2018"  
 }
 
 function saveCiti() {
   saveCitiArr.push(searchInput.value)
   let store = JSON.stringify(saveCitiArr)
   localStorage.setItem('cities', store)
+  console.log(localStorage)
 }
 
 const getCities = (() => {
-  saveCitiArr.push(JSON.parse(localStorage.getItem('cities')))
-  savedCities.innerHTML += saveCitiArr
+
+  
+ saveCitiArr.push(JSON.parse(localStorage.getItem('cities')))
+  savedCities.innerHTML += JSON.parse(localStorage.getItem('cities'))
+  console.log(localStorage)
 })()
 
 
