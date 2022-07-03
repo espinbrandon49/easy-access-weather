@@ -6,6 +6,7 @@ const formatted = moment(timestamp).format('L');
 console.log(formatted); // "02/24/2018"
 
 function getUrl1() {
+  event.preventDefault()
   //Current Weather - https://openweathermap.org/current#geocoding
   var requestUrl1 = 'https://api.openweathermap.org/data/2.5/weather?q=Chicago&units=imperial&appid=' + appid
   //console.log(requestUrl)
@@ -39,5 +40,5 @@ function getUrl2(lat, lon) {
     });
 }
 
-document.getElementById('url1').addEventListener('click', getUrl1)
-document.getElementById('url2').addEventListener('click', getUrl2)
+document.getElementById('search').addEventListener('click', getUrl1)
+//document.getElementById('url2').addEventListener('click', getUrl2)

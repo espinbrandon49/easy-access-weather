@@ -1,0 +1,30 @@
+header {
+  height: fit-content;
+  background-color: #505359;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+main {
+  display: flex;
+}
+
+#savedCities {
+  border: 1px solid black;
+  width: 200px;
+  height: 300px;
+}
+#currW {
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+}
+#forecast {
+  border: 1px solid black;
+  width: 200px;
+  height: 100px;
+}
+svg {
+  background-color: blueviolet;
+  color: white;
+}
