@@ -4,6 +4,7 @@ const searchInput = document.getElementById('searchInput')
 const savedCities = document.getElementById('savedCities')
 const currWeather = document.getElementById('currWeather')
 const forecast = document.getElementById('forecast')
+
 document.getElementById('search').addEventListener('click', () => {
   event.preventDefault()
   let searchField = searchInput.value
@@ -12,10 +13,9 @@ document.getElementById('search').addEventListener('click', () => {
 })
 
 function getUrl1(searchVal) {
-  //event.preventDefault()
-  //Current Weather - https://openweathermap.org/current#geocoding
+  // https://openweathermap.org/current#geocoding
   const requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${searchVal},USA&units=imperial&appid=${appid}`
-  //console.log(requestUrl)
+
   fetch(requestUrl1)
     .then(function (response) {
       return response.json();
@@ -29,9 +29,9 @@ function getUrl1(searchVal) {
       setCiti()
     });
 }
-// retrieves data from an API
+// Retrieves data from one of the weather.org APIs and displays it
 function getUrl2(lat, lon) {
-  // current + 5day + UI - https://openweathermap.org/api/one-call-api
+  // https://openweathermap.org/api/one-call-api
   var requestUrl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${appid}`
 
   fetch(requestUrl2)
@@ -41,22 +41,24 @@ function getUrl2(lat, lon) {
     .then(function (dataF) {
       // Use the console to examine the response
       console.log(dataF)
+
+      // displays current weather conditions
       currentWeather(dataF.current.temp, dataF.current.humidity, dataF.current.wind_speed, dataF.current.uvi)
-      let arr = dataF.daily
-      //let weather = arr.weather[0]
-      console.log(arr)
+
+      // displays 5-day weather forecast
+      const arr = dataF.daily
       fiveDay(arr, arr.dt, arr.weather, arr.temp, arr.humidity)
     });
 }
 
-// displays current city name/date
+// Displays current city name/date
 function currCN(num, name) {
   const timestamp = num * 1000;
   const formatted = moment(timestamp).format('(M/DD/YYYY)');
   document.getElementById('cityName').innerHTML = name + ' ' + formatted
 }
 
-// sets a new search item in local storage and displays updated city search list
+// Stores searches for future referencing
 function setCiti() {
   cityArr.includes(searchInput.value) ? null : cityArr.push(searchInput.value)
   let store = JSON.stringify(cityArr)
@@ -65,7 +67,7 @@ function setCiti() {
   //HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY
 }
 
-// gets the list of cities searched from local storage and keeps the list displayed 
+// Loads previous searches 
 const getCities = (() => {
   if (!localStorage.cities) {
     cityArr.push('San Francisco')
@@ -80,7 +82,7 @@ const getCities = (() => {
   }
 })//()
 
-// displays current weather conditions
+// Displays current weather conditions in searched city
 function currentWeather(temp, humidity, wind, uv) {
   document.getElementById('uvi')
   currWeather.innerHTML =
@@ -88,7 +90,7 @@ function currentWeather(temp, humidity, wind, uv) {
    Humidity: ${humidity}% <br> 
    Wind: ${wind} MPH <br> 
    UV Index: <span id='uvi'> ${uv} </span>`
-
+  // sets color coord for UV Index
   if (uv > 8) {
     uvi.setAttribute('style', 'background-color: red')
   } else if (uv > 5) {
@@ -100,7 +102,7 @@ function currentWeather(temp, humidity, wind, uv) {
   }
 }
 
-// creates city search buttons
+// Creates buttons to view weather from previous searches
 function citiesSearched() {
   const btn = document.querySelectorAll('button')
   for (let i = 0; i < cityArr.length; i++) {
@@ -113,18 +115,27 @@ function citiesSearched() {
   }
 }
 
-//HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY
-//HOW TO HANDLE AN EMPTY CITY ARRAY - make sure there is never an empty array...
-//HOW TO HANDLE BLANK INPUT ON CLICK - make sure there is never an empty array...
-
+// Creates 5-day forecast
 function fiveDay(arr, dt, conditions, temp, humidity) {
+  
+  //const timestamp = dt * 1000;
+  //dt = moment(dt*1000).format('(M/DD/YYYY)');
+  
   for (let i = 1; i <= 5; i++) {
     const newDiv = document.createElement('div')
+    const newH = document.createElement('h3')
+    
+    let time = arr[i].dt * 1000
+    newH.textContent = moment(time).format('(M/DD/YYYY)')
+    
     newDiv.innerHTML = `
-    <p> ${arr[i].dt}</p>
     Conditions: ${arr[i].weather[0].main}<br>
     Temp: ${arr[i].temp.day} \u00B0F <br>
     ${arr[i].humidity}% `
+    forecast.appendChild(newH)
     forecast.appendChild(newDiv)
   }
 }
+
+//HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY
+//HOW TO FIX TIME ON 5-DAY
