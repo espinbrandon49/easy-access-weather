@@ -7,7 +7,7 @@ const forecast = document.getElementById('forecast')
 document.getElementById('search').addEventListener('click', () => {
   event.preventDefault()
   let searchField = searchInput.value
-  !searchInput.value ? searchField = cityArr[cityArr.length - 1]: searchField = searchInput.value
+  !searchInput.value ? searchField = cityArr[cityArr.length - 1] : searchField = searchInput.value
   getUrl1(searchField)
 })
 
@@ -42,6 +42,10 @@ function getUrl2(lat, lon) {
       // Use the console to examine the response
       console.log(dataF)
       currentWeather(dataF.current.temp, dataF.current.humidity, dataF.current.wind_speed, dataF.current.uvi)
+      let arr = dataF.daily
+      //let weather = arr.weather[0]
+      console.log(arr)
+      fiveDay(arr, arr.dt, arr.weather, arr.temp, arr.humidity)
     });
 }
 
@@ -69,11 +73,12 @@ const getCities = (() => {
     localStorage.setItem('cities', store)
   } else {
     cityArr = (JSON.parse(localStorage.getItem('cities')))
-    citiesSearched() // populates cities searched automatically
-    getUrl1(cityArr[cityArr.length - 1]) //curr weather loaded with last city searched automatically
-    console.log(searchInput.value, 'load')
+    // populates cities searched automatically
+    citiesSearched()
+    //curr weather loaded with last city searched automatically
+    getUrl1(cityArr[cityArr.length - 1])
   }
-})()
+})//()
 
 // displays current weather conditions
 function currentWeather(temp, humidity, wind, uv) {
@@ -112,3 +117,14 @@ function citiesSearched() {
 //HOW TO HANDLE AN EMPTY CITY ARRAY - make sure there is never an empty array...
 //HOW TO HANDLE BLANK INPUT ON CLICK - make sure there is never an empty array...
 
+function fiveDay(arr, dt, conditions, temp, humidity) {
+  for (let i = 1; i <= 5; i++) {
+    const newDiv = document.createElement('div')
+    newDiv.innerHTML = `
+    <p> ${arr[i].dt}</p>
+    Conditions: ${arr[i].weather[0].main}<br>
+    Temp: ${arr[i].temp.day} \u00B0F <br>
+    ${arr[i].humidity}% `
+    forecast.appendChild(newDiv)
+  }
+}
