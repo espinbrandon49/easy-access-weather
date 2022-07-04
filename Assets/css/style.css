@@ -9,15 +9,16 @@ header {
 main {
   display: flex;
   max-width: 1200px;
-  justify-content: center;
+  margin: 0 auto;
   gap: 20px;
+  border: 1px solid blue;
 }
 
 /*search*/
 #searchForm {
   display: flex;
   flex-direction: column;
-  border: 1px solid blue;
+  width: 30%;
 }
 
 form>p {
@@ -41,7 +42,7 @@ form>p {
 
 svg {
   padding: 3px;
-  background-color: blueviolet;
+  background-color: blue;
   color: white;
 }
 
@@ -51,7 +52,6 @@ svg {
   width: 100%;
   height: fit-content;
   background-color: #505359;
-  border-right: 1px solid #505359;
   border-bottom: 1px solid #505359;
   margin: 10px 0;
 }
@@ -70,22 +70,30 @@ svg {
 
 /*search*/
 
+/*current weather*/
+
+#weather {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
 #cityName {
   border: 1px solid black;
-  width: fit-content;
+  
   height: fit-content
 }
 
 #currWeather {
   border: 1px solid black;
-  width: 200px;
   height: 200px;
 }
 
 #uvi {}
 
+/*current weather*/
 #forecast {
   border: 1px solid black;
-  width: 200px;
   height: 100px;
 }
