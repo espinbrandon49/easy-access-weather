@@ -32,6 +32,8 @@ function getUrl1(searchVal) {
 
       // display city name/time
       currCN(data.dt, data.name)
+
+      // store city name
       setCiti()
     });
 }
@@ -40,6 +42,7 @@ function getUrl1(searchVal) {
 function getUrl2(lat, lon) {
   // https://openweathermap.org/api/one-call-api
   var requestUrl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${appid}`
+
   // fetches weather data
   fetch(requestUrl2)
     .then(function (response) {
@@ -114,7 +117,7 @@ function currentWeather(temp, humidity, wind, uv) {
   <p>UV Index: <span id='uvi'> ${uv} </span></p></div>`
   )
 
-  // sets color coord for UV Index
+  // sets color code for UV Index
   if (uv > 8) {
     uvi.setAttribute('style', 'background-color: red')
   } else if (uv > 5) {
@@ -145,30 +148,3 @@ function fiveDay(arr, dt, conditions, temp, humidity) {
 }
 
 //HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY
-
-/*function currentWeather(temp, humidity, wind, uv) {
-  document.getElementById('uvi')
-  currWeather.innerHTML =
-    `Temperature: ${temp} \u00B0F <br>
-   Humidity: ${humidity}% <br> 
-   Wind: ${wind} MPH <br> 
-   UV Index: <span id='uvi'> ${uv} </span>`
-  // sets color coord for UV Index
-  if (uv > 8) {
-    uvi.setAttribute('style', 'background-color: red')
-  } else if (uv > 5) {
-    uvi.setAttribute('style', 'background-color: orange')
-  } else if (uv > 2) {
-    uvi.setAttribute('style', 'background-color: yellow')
-  } else {
-    uvi.setAttribute('style', 'background-color: green')
-  }
-
-
-   // let searchField = searchInput.value
-  // if search input is empty when clicked, display the default
- // !searchInput.value ? searchField = cityArr[cityArr.length - 1] : searchField = searchInput.value
- !searchInput.value ? getUrl1(cityArr[cityArr.length - 1]) : getUrl1(searchInput.value)
-  // display weather data on dashboard
-  //getUrl1(searchField)
-}*/

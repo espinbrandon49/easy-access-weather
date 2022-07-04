@@ -5,33 +5,77 @@ header {
   text-align: center;
   padding: 20px 0;
 }
+
 main {
   display: flex;
 }
 
-#savedCities {
-  border: 1px solid black;
-  width: 200px;
-  height: 300px;
+/*search*/
+#searchForm {
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
 }
+
+form>p {
+  font-size: 20px;
+  padding: 5px;
+}
+
+#searchBar {
+  border: 1px solid blue;
+  display: flex;
+  padding: 5px;
+}
+
+#searchBar>input {
+  padding: 0 5px;
+  width: 75%;
+}
+
+#searchBtn {
+  display: flex;
+}
+
+svg {
+  padding: 3px;
+}
+
+#savedCities {
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+}
+.cityBtn {
+  background-color: white;
+  border: 1px solid pink; 
+  text-align: start;
+  padding: 12px;
+}
+/*search*/
+
 #cityName {
   border: 1px solid black;
   width: fit-content;
   height: fit-content
 }
+
 #currWeather {
   border: 1px solid black;
   width: 200px;
   height: 200px;
 }
-#uvi {
 
-}
+#uvi {}
+
 #forecast {
   border: 1px solid black;
   width: 200px;
   height: 100px;
 }
+
 svg {
   background-color: blueviolet;
   color: white;
