@@ -6,7 +6,7 @@ const currWeather = document.getElementById('currWeather')
 const forecast = document.getElementById('forecast')
 
 // Run weather search by city name when search button is clicked
-document.getElementById('search').addEventListener('click', () => {
+document.getElementById('searchBtn').addEventListener('click', () => {
   event.preventDefault()
   // if search input is empty, display default
   !searchInput.value ? getUrl1(cityArr[cityArr.length - 1]) : getUrl1(searchInput.value)
@@ -96,9 +96,12 @@ const getCities = (() => {
 
 // Creates buttons to view weather from previous searches
 function citiesSearched() {
-  for (let i = 0; i < cityArr.length; i++) {
+  let newCityArr = cityArr.slice(1)
+  console.log(newCityArr)
+  for (let i = 0; i < newCityArr.length; i++) {
     const newCity = document.createElement('button')
-    newCity.textContent = cityArr[i]
+    newCity.setAttribute('class', 'cityBtn')
+    newCity.textContent = newCityArr[i]
     savedCities.appendChild(newCity)
     newCity.addEventListener('click', () => {
       getUrl1(newCity.textContent)

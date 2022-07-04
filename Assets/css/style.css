@@ -8,24 +8,26 @@ header {
 
 main {
   display: flex;
+  max-width: 1200px;
+  justify-content: center;
+  gap: 20px;
 }
 
 /*search*/
 #searchForm {
-  border: 1px solid blue;
   display: flex;
   flex-direction: column;
+  border: 1px solid blue;
 }
 
 form>p {
   font-size: 20px;
-  padding: 5px;
+  padding: 5px 0;
 }
 
 #searchBar {
-  border: 1px solid blue;
   display: flex;
-  padding: 5px;
+  padding: 5px 0;
 }
 
 #searchBar>input {
@@ -39,21 +41,33 @@ form>p {
 
 svg {
   padding: 3px;
+  background-color: blueviolet;
+  color: white;
 }
 
 #savedCities {
-  border: 1px solid blue;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: fit-content;
+  background-color: #505359;
+  border-right: 1px solid #505359;
+  border-bottom: 1px solid #505359;
+  margin: 10px 0;
 }
+
 .cityBtn {
   background-color: white;
-  border: 1px solid pink; 
   text-align: start;
   padding: 12px;
+  border: none;
+  margin: 0.5px;
 }
+
+.cityBtn:hover {
+  background-color: salmon;
+}
+
 /*search*/
 
 #cityName {
@@ -74,9 +88,4 @@ svg {
   border: 1px solid black;
   width: 200px;
   height: 100px;
-}
-
-svg {
-  background-color: blueviolet;
-  color: white;
 }
