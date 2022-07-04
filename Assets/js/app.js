@@ -113,11 +113,10 @@ function citiesSearched() {
 function currentWeather(temp, humidity, wind, uv) {
   document.getElementById('uvi')
   currWeather.innerHTML = (
-    `<div class=currWeather>
-  <p>Temperature: ${temp} \u00B0F</p>
+    `<p>Temperature: ${temp} \u00B0F</p> 
   <p>Humidity: ${humidity}%</p> 
   <p>Wind: ${wind} MPH</p> 
-  <p>UV Index: <span id='uvi'> ${uv} </span></p></div>`
+  <p>UV Index: <span id='uvi'> ${uv} </span></p>`
   )
 
   // sets color code for UV Index

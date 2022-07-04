@@ -15,7 +15,7 @@
     <main id="container">
       <section id="searchForm">
         <form>
-          <p>Search for a City:</p>
+          <h2>Search for a City:</h2>
           <div id="searchBar">
             <input type="text" id="searchInput" placeholder="city" required>
             <label for="searchInput" required>
@@ -49,10 +49,15 @@
         <section id="weather">
           <article id="current">
             <h2 id="cityName">City Name</h2>
-            <div id="currWeather"></div>
+            <div id="currWeather">
+              <p>Temperature: 100 &#8457</p>
+              <p>Humidity: 75%</p>
+              <p>Wind: 16 MPH</p>
+              <p>UV Index: <span id='uvi'> 5.4 </span></p>
+            </div>
           </article>
           <article id="fiveDay">
-            <h2>5-Day Forecast</h2>
+            <h3>5-Day Forecast</h3>
             <div id="forecast"></div>
           </article>
         </section>
