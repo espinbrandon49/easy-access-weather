@@ -47,7 +47,7 @@ function getUrl2(lat, lon) {
 
       // displays 5-day weather forecast
       const arr = dataF.daily
-      fiveDay(arr, arr.dt, arr.weather, arr.temp, arr.humidity)
+      forecast.innerHTML = fiveDay(arr, arr.dt, arr.weather, arr.temp, arr.humidity)
     });
 }
 
@@ -80,7 +80,7 @@ const getCities = (() => {
     //curr weather loaded with last city searched automatically
     getUrl1(cityArr[cityArr.length - 1])
   }
-})//()
+})()
 
 // Displays current weather conditions in searched city
 function currentWeather(temp, humidity, wind, uv) {
@@ -116,26 +116,40 @@ function citiesSearched() {
 }
 
 // Creates 5-day forecast
-function fiveDay(arr, dt, conditions, temp, humidity) {
-  
-  //const timestamp = dt * 1000;
-  //dt = moment(dt*1000).format('(M/DD/YYYY)');
-  
-  for (let i = 1; i <= 5; i++) {
-    const newDiv = document.createElement('div')
+/*function fiveDay(arr, dt, conditions, temp, humidity) {
+    for (let i = 1; i <= 5; i++) {
+    //const newDiv = document.createElement('div')
     const newH = document.createElement('h3')
     
     let time = arr[i].dt * 1000
-    newH.textContent = moment(time).format('(M/DD/YYYY)')
-    
-    newDiv.innerHTML = `
+    newH.textContent = moment(time).format('(M/DD/YYYY)')   
+    forecast.innerHTML += `
     Conditions: ${arr[i].weather[0].main}<br>
     Temp: ${arr[i].temp.day} \u00B0F <br>
     ${arr[i].humidity}% `
-    forecast.appendChild(newH)
-    forecast.appendChild(newDiv)
+    //forecast.appendChild(newH)
+    //forecast.appendChild(newDiv)
   }
-}
+}*/
 
 //HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY
-//HOW TO FIX TIME ON 5-DAY
+//HOW TO have 5 day forecast only print once
+
+function fiveDay(arr, dt, conditions, temp, humidity) {
+  let test = []
+  for (let i = 1; i <= 5; i++) {
+  test.push(arr[i].weather[0].main
+    ,arr[i].temp.day
+    ,`${arr[i].humidity}%`)
+  //const newH = document.createElement('h3')
+  //let time = arr[i].dt * 1000
+  //newH.textContent = moment(time).format('(M/DD/YYYY)')
+    
+  //Conditions: ${arr[i].weather[0].main}<br>
+  //Temp: ${arr[i].temp.day} \u00B0F <br>
+  //${arr[i].humidity}% `
+    //forecast.appendChild(newH)
+    //forecast.appendChild(newDiv)
+  }
+  return test
+}
