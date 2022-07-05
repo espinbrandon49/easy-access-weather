@@ -1,30 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700;900&display=swap');
 
-*{
+:root {
+  --outLineColor: pink;
+  --fillColor: #5C5Cff;
+}
+
+* {
   font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-size: 1.5em
+}
+
+h3 {
+  font-size: 1.17em;
+}
+h4 {
+  font-size: 1em;
 }
 
 header {
   height: fit-content;
-  background-color: #505359;
+  background-color: #710a1e;
   color: white;
   text-align: center;
   padding: 20px 0;
   font-size: 2em;
   margin-bottom: 12px;
 }
-h2 {
-  font-size: 1.5em
-}
-h3 {
-  font-size: 1.17em;
-}
+
 main {
   display: flex;
   max-width: 1200px;
   margin: 0 auto;
   gap: 20px;
-  border: 1px solid blue;
 }
 
 /*search*/
@@ -34,6 +44,7 @@ main {
   width: 30%;
   margin-left: 5px;
 }
+
 form>h2 {
   font-size: 1em;
   padding: 5px 0;
@@ -49,25 +60,30 @@ form>h2 {
   padding: 0 5px;
   width: 75%;
   padding: 5px;
+  border: 1px solid var(--outLineColor);
+  border-radius: 2px;
 }
 
 #searchBtn {
   display: flex;
+  border: 2px solid skyblue;
+  border-radius: 2px;
 }
 
 svg {
   padding: 7px;
-  background-color: blue;
+  background-color: var(--fillColor);
   color: white;
+  
 }
 
 #savedCities {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: fit-content;
-  background-color: #505359;
-  border-bottom: 1px solid #505359;
+  height: auto;
+  background-color: var(--outLineColor);
+  border-bottom: 1px solid var(--outLineColor);
   margin: 10px 0;
 }
 
@@ -78,14 +94,13 @@ svg {
   text-align: start;
   padding: 12px;
   border: none;
-  margin: 0.5px;  
+  margin: 0.5px;
+  
 }
 
 .cityBtn:hover {
-  background-color: salmon;
+  background-color: #F9D7de;
 }
-
-/*search*/
 
 /*current weather*/
 #weather {
@@ -94,8 +109,9 @@ svg {
   width: 70%;
   line-height: 2.17;
 }
+
 #current {
-  border: 1px solid pink;
+  border: 1px solid var(--outLineColor);
   border-radius: 2px;
   padding: 17px;
 }
@@ -107,8 +123,17 @@ svg {
   border-radius: 2px;
 }
 
-/*current weather*/
+/*five day weather*/
 #forecast {
-  border: 1px solid black;
-  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  gap: 3px;
+  margin-right: 10px;
+}
+.card {
+  background-color: var(--fillColor);
+  color: white;
+  border-radius: 4px;
+  padding: 5px 17px;
+  line-height: 2.5;
 }

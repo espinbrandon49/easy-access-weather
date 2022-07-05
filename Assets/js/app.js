@@ -111,7 +111,6 @@ const getCities = (() => {
 // Create buttons to view weather from previous searches
 function citiesSearched() {
   let newCityArr = cityArr.slice(1)
-  console.log(newCityArr)
   for (let i = 0; i < newCityArr.length; i++) {
     const newCity = document.createElement('button')
     newCity.setAttribute('class', 'cityBtn')
@@ -154,7 +153,7 @@ function fiveDay(arr, dt, conditions, temp, humidity) {
 
     fiveDayCard += (
       `<div class="card${i} card">
-      <p>${formatted}</p>` +
+      <h4>${formatted}</h4>` +
       `<p>${arr[i].weather[0].main}</p>` +
       `<p>${arr[i].temp.day} \u00B0F</p>` +
       `<p>${arr[i].humidity}%</p></div>`
@@ -162,5 +161,3 @@ function fiveDay(arr, dt, conditions, temp, humidity) {
   }
   return fiveDayCard
 }
-
-//HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY
