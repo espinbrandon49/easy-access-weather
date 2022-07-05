@@ -9,7 +9,9 @@ const forecast = document.getElementById('forecast')
 document.getElementById('searchBtn').addEventListener('click', () => {
   event.preventDefault()
   // if search input is empty, display default
+
   !searchInput.value ? getUrl1(cityArr[cityArr.length - 1]) : getUrl1(searchInput.value)
+
 })
 
 // Retrieves latitude and longitude for, and runs the function that gets weather data
@@ -26,7 +28,7 @@ function getUrl1(searchVal) {
     .then(function (data) {
       // Use the console to examine the response
       console.log(data);
-  
+
       // get the weather data
       getUrl2(data.coord.lat, data.coord.lon)
 
@@ -103,7 +105,7 @@ const getCities = (() => {
     // curr weather loads with last new city searched automatically
     getUrl1(cityArr[cityArr.length - 1])
   }
-})//()
+})()
 
 // Create buttons to view weather from previous searches
 function citiesSearched() {
@@ -160,9 +162,8 @@ function fiveDay(arr) {
   return fiveDayCard
 }
 
-// MEDIA QUERIES
 // README
-// HANDLE BAD FETCH
+// HANDLE BAD FETCH - https://jasonwatmore.com/post/2021/10/09/fetch-error-handling-for-failed-http-responses-and-network-errors#:~:text=The%20fetch()%20function%20will,reject(error)%3B%20.
 // cleanup CSS
 // clean up html
 // how to access images in subdirectories
