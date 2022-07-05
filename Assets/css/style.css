@@ -9,6 +9,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+html {
+  background-color: #FBFBFB;
+}
+
 h2 {
   font-size: 1.5em
 }
@@ -16,6 +20,7 @@ h2 {
 h3 {
   font-size: 1.17em;
 }
+
 h4 {
   font-size: 1em;
 }
@@ -57,24 +62,32 @@ form>h2 {
 }
 
 #searchBar>input {
-  padding: 0 5px;
+  padding: 7px;
   width: 75%;
-  padding: 5px;
   border: 1px solid var(--outLineColor);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 #searchBtn {
   display: flex;
   border: 2px solid skyblue;
+  align-items: center;
+  justify-content: center;
   border-radius: 2px;
+  height: 40px;
+  width: 40px;
+  background-color: var(--fillColor);
+}
+
+#searchBtn:hover {
+  border: 1px solid skyblue
 }
 
 svg {
-  padding: 7px;
+  padding: 5px;
   background-color: var(--fillColor);
   color: white;
-  
+
 }
 
 #savedCities {
@@ -95,7 +108,6 @@ svg {
   padding: 12px;
   border: none;
   margin: 0.5px;
-  
 }
 
 .cityBtn:hover {
@@ -110,17 +122,26 @@ svg {
   line-height: 2.17;
 }
 
+#cityName {
+  display: flex;
+  align-items: center;
+
+}
+
+.weatherIcon {
+  width: 50px;
+  height: 50px;
+}
+
 #current {
   border: 1px solid var(--outLineColor);
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 17px;
 }
 
 #uvi {
-  background-color: red;
   padding: 5px;
   color: white;
-  border-radius: 2px;
 }
 
 /*five day weather*/
@@ -130,10 +151,12 @@ svg {
   gap: 3px;
   margin-right: 10px;
 }
+
 .card {
   background-color: var(--fillColor);
   color: white;
   border-radius: 4px;
-  padding: 5px 17px;
+  padding: 5px 12px;
   line-height: 2.5;
+  border: 1px solid blue;
 }

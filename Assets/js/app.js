@@ -31,8 +31,8 @@ function getUrl1(searchVal) {
       getUrl2(data.coord.lat, data.coord.lon)
 
       // display city name/time
-      currCN(data.dt, data.name)
-
+      //const locationIcon = document.querySelector('.weatherIcon');
+      currCN(data.dt, data.name, data.weather[0].icon)
       // store city name
       setCiti()
     });
@@ -63,15 +63,22 @@ function getUrl2(lat, lon) {
 }
 
 // Displays current city name/date above current weather
-function currCN(num, name) {
+function currCN(num, name, icon) {
   const timestamp = num * 1000;
   const formatted = moment(timestamp).format('(M/DD/YYYY)');
-  document.getElementById('cityName').innerHTML = name + ' ' + formatted
+  document.getElementById('cityName').innerHTML = `${name} ${formatted}<img class='weatherIcon' src="${icon}.png"/>`
+
 }
+/*
+function currCN(num, name, icon) {
+  const timestamp = num * 1000;
+  const formatted = moment(timestamp).format('(M/DD/YYYY)');
+  document.getElementById('current').innerHTML = `
+  <h2>${name} ${formatted} </h2><img class='weatherIcon' src="${icon}.png"/>`
+}*/
 
 // Store search
 function setCiti() {
-  //cityArr.includes(searchInput.value) ? null : cityArr.push(searchInput.value)
   if (!cityArr.includes(searchInput.value)) {
     cityArr.push(searchInput.value)
     addCity()
@@ -79,7 +86,6 @@ function setCiti() {
   let store = JSON.stringify(cityArr)
   localStorage.setItem('cities', store)
   searchInput.value = ''
-  //HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY ...done
 }
 
 // Add new city to saved searches
@@ -106,7 +112,7 @@ const getCities = (() => {
     // curr weather loads with last new city searched automatically
     getUrl1(cityArr[cityArr.length - 1])
   }
-})//()
+})()
 
 // Create buttons to view weather from previous searches
 function citiesSearched() {
@@ -124,7 +130,7 @@ function citiesSearched() {
 
 // Create current weather display
 function currentWeather(temp, humidity, wind, uv) {
-  document.getElementById('uvi')
+ // document.getElementById('uvi')
   currWeather.innerHTML = (
     `<p>Temperature: ${temp} \u00B0F</p> 
   <p>Humidity: ${humidity}%</p> 
@@ -154,10 +160,11 @@ function fiveDay(arr, dt, conditions, temp, humidity) {
     fiveDayCard += (
       `<div class="card${i} card">
       <h4>${formatted}</h4>` +
-      `<p>${arr[i].weather[0].main}</p>` +
-      `<p>${arr[i].temp.day} \u00B0F</p>` +
-      `<p>${arr[i].humidity}%</p></div>`
+      `<img class='weatherIcon' src="${arr[i].weather[0].icon}.png">` +
+      `<p>Temp: ${arr[i].temp.day} \u00B0F</p>` +
+      `<p>Humidity: ${arr[i].humidity}%</p></div>`
     )
   }
   return fiveDayCard
 }
+
