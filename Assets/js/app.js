@@ -103,7 +103,7 @@ const getCities = (() => {
     // curr weather loads with last new city searched automatically
     getUrl1(cityArr[cityArr.length - 1])
   }
-})()
+})//()
 
 // Create buttons to view weather from previous searches
 function citiesSearched() {
@@ -141,6 +141,7 @@ function currentWeather(arr, uv) {
   }
 }
 
+
 // Create 5-day forecast display
 function fiveDay(arr) {
   let fiveDayCard = ''
@@ -159,3 +160,12 @@ function fiveDay(arr) {
   return fiveDayCard
 }
 
+// MEDIA QUERIES
+// README
+// HANDLE BAD FETCH
+// cleanup CSS
+// clean up html
+// how to access images in subdirectories
+// change repo name to something unique
+//card class name
+//ERASE MEDIA QUERY INFO
