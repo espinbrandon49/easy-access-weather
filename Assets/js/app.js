@@ -57,8 +57,7 @@ function getUrl2(lat, lon) {
       currentWeather(dataF.current.temp, dataF.current.humidity, dataF.current.wind_speed, dataF.current.uvi)
 
       // display 5-day weather forecast
-      const arr = dataF.daily
-      forecast.innerHTML = fiveDay(arr, arr.dt, arr.weather, arr.temp, arr.humidity)
+      forecast.innerHTML = fiveDay(dataF.daily)
     });
 }
 
@@ -151,7 +150,7 @@ function currentWeather(temp, humidity, wind, uv) {
 }
 
 // Create 5-day forecast display
-function fiveDay(arr, dt, conditions, temp, humidity) {
+function fiveDay(arr) {
   let fiveDayCard = ''
   for (let i = 1; i <= 5; i++) {
     let time = arr[i].dt * 1000

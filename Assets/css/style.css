@@ -7,6 +7,8 @@
 
 * {
   font-family: 'Roboto', sans-serif;
+  font-size: 1.025em;
+  
 }
 
 html {
@@ -14,15 +16,15 @@ html {
 }
 
 h2 {
-  font-size: 1.5em
+  font-size: 1.75em
 }
 
 h3 {
-  font-size: 1.17em;
+  font-size: 1.5em;
 }
 
 h4 {
-  font-size: 1em;
+  font-size: 1.17em;
 }
 
 header {
@@ -40,18 +42,19 @@ main {
   max-width: 1200px;
   margin: 0 auto;
   gap: 20px;
+
 }
 
 /*search*/
 #searchForm {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 25%;
   margin-left: 5px;
 }
 
 form>h2 {
-  font-size: 1em;
+  font-size: 1.17em;
   padding: 5px 0;
 }
 
@@ -70,44 +73,41 @@ form>h2 {
 
 #searchBtn {
   display: flex;
-  border: 2px solid skyblue;
+  border: 3px solid skyblue;
   align-items: center;
   justify-content: center;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 40px;
   width: 40px;
   background-color: var(--fillColor);
 }
 
 #searchBtn:hover {
-  border: 1px solid skyblue
+  border: 1px solid cornflowerblue;
 }
 
 svg {
   padding: 5px;
   background-color: var(--fillColor);
   color: white;
-
+  border-radius: 4px;
 }
 
 #savedCities {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: auto;
-  background-color: var(--outLineColor);
-  border-bottom: 1px solid var(--outLineColor);
   margin: 10px 0;
+  border-top: 1px solid var(--outLineColor);
+  border-left: 1px solid var(--outLineColor);
+  border-right: 1px solid var(--outLineColor);
 }
 
 .cityBtn {
-  align-self: center;
-  width: 99.5%;
   background-color: white;
   text-align: start;
   padding: 12px;
   border: none;
-  margin: 0.5px;
+  border-bottom: 1px solid var(--outLineColor);
 }
 
 .cityBtn:hover {
@@ -118,14 +118,19 @@ svg {
 #weather {
   display: flex;
   flex-direction: column;
-  width: 70%;
-  line-height: 2.17;
+  width: 75%;
+  gap: 40px;
+}
+#current {
+  border: 1px solid var(--outLineColor);
+  border-radius: 4px;
+  padding: 17px;
+  line-height: 3;
 }
 
 #cityName {
   display: flex;
   align-items: center;
-
 }
 
 .weatherIcon {
@@ -133,10 +138,8 @@ svg {
   height: 50px;
 }
 
-#current {
-  border: 1px solid var(--outLineColor);
-  border-radius: 4px;
-  padding: 17px;
+#currWeather>p {
+  font-weight: 700;
 }
 
 #uvi {
@@ -145,10 +148,14 @@ svg {
 }
 
 /*five day weather*/
+#fiveDay {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 #forecast {
   display: flex;
-  justify-content: space-between;
-  gap: 3px;
+  gap: 25px;
   margin-right: 10px;
 }
 
@@ -156,7 +163,9 @@ svg {
   background-color: var(--fillColor);
   color: white;
   border-radius: 4px;
-  padding: 5px 12px;
+  padding: 5px 10px;
   line-height: 2.5;
-  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
 }
