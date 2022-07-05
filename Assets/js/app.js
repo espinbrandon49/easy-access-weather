@@ -26,13 +26,13 @@ function getUrl1(searchVal) {
     .then(function (data) {
       // Use the console to examine the response
       console.log(data);
-
+  
       // get the weather data
       getUrl2(data.coord.lat, data.coord.lon)
 
-      // display city name/time
-      //const locationIcon = document.querySelector('.weatherIcon');
+      // display city name/time/weather icon
       currCN(data.dt, data.name, data.weather[0].icon)
+
       // store city name
       setCiti()
     });
@@ -54,7 +54,7 @@ function getUrl2(lat, lon) {
       console.log(dataF)
 
       // display current weather conditions
-      currentWeather(dataF.current.temp, dataF.current.humidity, dataF.current.wind_speed, dataF.current.uvi)
+      currentWeather(dataF.current, dataF.current.uvi)
 
       // display 5-day weather forecast
       forecast.innerHTML = fiveDay(dataF.daily)
@@ -66,15 +66,7 @@ function currCN(num, name, icon) {
   const timestamp = num * 1000;
   const formatted = moment(timestamp).format('(M/DD/YYYY)');
   document.getElementById('cityName').innerHTML = `${name} ${formatted}<img class='weatherIcon' src="${icon}.png"/>`
-
 }
-/*
-function currCN(num, name, icon) {
-  const timestamp = num * 1000;
-  const formatted = moment(timestamp).format('(M/DD/YYYY)');
-  document.getElementById('current').innerHTML = `
-  <h2>${name} ${formatted} </h2><img class='weatherIcon' src="${icon}.png"/>`
-}*/
 
 // Store search
 function setCiti() {
@@ -128,13 +120,13 @@ function citiesSearched() {
 }
 
 // Create current weather display
-function currentWeather(temp, humidity, wind, uv) {
+function currentWeather(arr, uv) {
  // document.getElementById('uvi')
   currWeather.innerHTML = (
-    `<p>Temperature: ${temp} \u00B0F</p> 
-  <p>Humidity: ${humidity}%</p> 
-  <p>Wind: ${wind} MPH</p> 
-  <p>UV Index: <span id='uvi'> ${uv} </span></p>`
+    `<p>Temperature: ${arr.temp} \u00B0F</p> 
+  <p>Humidity: ${arr.humidity}%</p> 
+  <p>Wind: ${arr.wind_speed} MPH</p> 
+  <p>UV Index: <span id='uvi'> ${arr.uvi} </span></p>`
   )
 
   // set color code for UV Index
