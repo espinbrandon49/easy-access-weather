@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700;900&display=swap');
+
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
 header {
   height: fit-content;
   background-color: #505359;
@@ -26,8 +32,8 @@ main {
   display: flex;
   flex-direction: column;
   width: 30%;
+  margin-left: 5px;
 }
-
 form>h2 {
   font-size: 1em;
   padding: 5px 0;
@@ -36,11 +42,13 @@ form>h2 {
 #searchBar {
   display: flex;
   padding: 5px 0;
+  align-items: center;
 }
 
 #searchBar>input {
   padding: 0 5px;
   width: 75%;
+  padding: 5px;
 }
 
 #searchBtn {
@@ -48,7 +56,7 @@ form>h2 {
 }
 
 svg {
-  padding: 3px;
+  padding: 7px;
   background-color: blue;
   color: white;
 }
@@ -70,8 +78,7 @@ svg {
   text-align: start;
   padding: 12px;
   border: none;
-  margin: 0.5px;
-  
+  margin: 0.5px;  
 }
 
 .cityBtn:hover {
@@ -89,15 +96,16 @@ svg {
 }
 #current {
   border: 1px solid pink;
+  border-radius: 2px;
   padding: 17px;
 }
 
-#currWeather {
-
+#uvi {
+  background-color: red;
+  padding: 5px;
+  color: white;
+  border-radius: 2px;
 }
-
-
-#uvi {}
 
 /*current weather*/
 #forecast {

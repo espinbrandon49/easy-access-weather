@@ -69,17 +69,31 @@ function currCN(num, name) {
   document.getElementById('cityName').innerHTML = name + ' ' + formatted
 }
 
-// Stores searches
+// Store search
 function setCiti() {
-  cityArr.includes(searchInput.value) ? null : cityArr.push(searchInput.value)
+  //cityArr.includes(searchInput.value) ? null : cityArr.push(searchInput.value)
+  if (!cityArr.includes(searchInput.value)) {
+    cityArr.push(searchInput.value)
+    addCity()
+  }
   let store = JSON.stringify(cityArr)
   localStorage.setItem('cities', store)
   searchInput.value = ''
-  //HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY
-  //I need to clear the previous buttons so that a new list can be built
+  //HOW TO DISPLAY UPDATED SAVED CITY LIST DYNAMICALLY ...done
 }
 
-// Loads previous searches 
+// Add new city to saved searches
+function addCity() {
+  const newCity = document.createElement('button')
+  newCity.setAttribute('class', 'cityBtn')
+  newCity.textContent = cityArr[cityArr.length - 1]
+  savedCities.appendChild(newCity)
+  newCity.addEventListener('click', () => {
+    getUrl1(newCity.textContent)
+  })
+}
+
+// Load previous searches 
 const getCities = (() => {
   if (!localStorage.cities) {
     cityArr.push('San Francisco')
@@ -94,7 +108,7 @@ const getCities = (() => {
   }
 })//()
 
-// Creates buttons to view weather from previous searches
+// Create buttons to view weather from previous searches
 function citiesSearched() {
   let newCityArr = cityArr.slice(1)
   console.log(newCityArr)
@@ -109,7 +123,7 @@ function citiesSearched() {
   }
 }
 
-// Creates current weather
+// Create current weather display
 function currentWeather(temp, humidity, wind, uv) {
   document.getElementById('uvi')
   currWeather.innerHTML = (
@@ -119,7 +133,7 @@ function currentWeather(temp, humidity, wind, uv) {
   <p>UV Index: <span id='uvi'> ${uv} </span></p>`
   )
 
-  // sets color code for UV Index
+  // set color code for UV Index
   if (uv > 8) {
     uvi.setAttribute('style', 'background-color: red')
   } else if (uv > 5) {
@@ -131,15 +145,15 @@ function currentWeather(temp, humidity, wind, uv) {
   }
 }
 
-// Creates 5-day forecast
+// Create 5-day forecast display
 function fiveDay(arr, dt, conditions, temp, humidity) {
   let fiveDayCard = ''
   for (let i = 1; i <= 5; i++) {
     let time = arr[i].dt * 1000
-    let formatted = moment(time).format('(M/DD/YYYY)')
+    let formatted = moment(time).format('M/DD/YYYY')
 
     fiveDayCard += (
-      `<div class="card${i}">
+      `<div class="card${i} card">
       <p>${formatted}</p>` +
       `<p>${arr[i].weather[0].main}</p>` +
       `<p>${arr[i].temp.day} \u00B0F</p>` +
