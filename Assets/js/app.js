@@ -22,7 +22,11 @@ function getUrl1(searchVal) {
   // fetch longitude and latitude
   fetch(requestUrl1)
     .then(function (response) {
-      return response.json();
+      if (!response.ok) {
+        searchInput.value = '!!!city name'
+      } else {
+        return response.json();
+      }  
     })
     // then
     .then(function (data) {
