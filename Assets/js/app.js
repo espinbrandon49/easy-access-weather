@@ -9,7 +9,6 @@ const forecast = document.getElementById('forecast')
 document.getElementById('searchBtn').addEventListener('click', () => {
   event.preventDefault()
   // if search input is empty, display default
-
   !searchInput.value ? getUrl1(cityArr[cityArr.length - 1]) : getUrl1(searchInput.value)
 
 })
@@ -23,10 +22,14 @@ function getUrl1(searchVal) {
   fetch(requestUrl1)
     .then(function (response) {
       if (!response.ok) {
-        searchInput.value = '!!!city name'
-      } else {
-        return response.json();
-      }  
+        //searchInput.value = '!!!city name'
+        searchInput.value = ''
+        return alert(`${searchInput.value} is not a valid city name`)
+        //return
+      }
+
+      return response.json();
+
     })
     // then
     .then(function (data) {
@@ -41,6 +44,9 @@ function getUrl1(searchVal) {
 
       // store city name
       setCiti()
+    })
+    .catch(function(error) {
+      console.error('Error')
     });
 }
 
@@ -71,7 +77,7 @@ function getUrl2(lat, lon) {
 function currCN(num, name, icon) {
   const timestamp = num * 1000;
   const formatted = moment(timestamp).format('(M/DD/YYYY)');
-  document.getElementById('cityName').innerHTML = `${name} ${formatted}<img class='weatherIcon' src="${icon}.png"/>`
+  document.getElementById('cityName').innerHTML = `${name} ${formatted}<img class='weatherIcon' src="http://openweathermap.org/img/wn/${icon}@2x.png"/>`
 }
 
 // Store search
@@ -147,7 +153,6 @@ function currentWeather(arr, uv) {
   }
 }
 
-
 // Create 5-day forecast display
 function fiveDay(arr) {
   let fiveDayCard = ''
@@ -158,7 +163,7 @@ function fiveDay(arr) {
     fiveDayCard += (
       `<div class="card${i} card">
       <h4>${formatted}</h4>` +
-      `<img class='weatherIcon' src="${arr[i].weather[0].icon}.png">` +
+      `<img class='weatherIcon' src="http://openweathermap.org/img/wn/${arr[i].weather[0].icon}@2x.png">` +
       `<p>Temp: ${arr[i].temp.day} \u00B0F</p>` +
       `<p>Humidity: ${arr[i].humidity}%</p></div>`
     )
@@ -167,10 +172,9 @@ function fiveDay(arr) {
 }
 
 // README
-// HANDLE BAD FETCH - https://jasonwatmore.com/post/2021/10/09/fetch-error-handling-for-failed-http-responses-and-network-errors#:~:text=The%20fetch()%20function%20will,reject(error)%3B%20.
+
 // cleanup CSS
 // clean up html
-// how to access images in subdirectories
 // change repo name to something unique
-//card class name
-//ERASE MEDIA QUERY INFO
+
+// erase media query info
