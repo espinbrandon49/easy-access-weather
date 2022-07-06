@@ -150,7 +150,8 @@ form>h2 {
 #forecast {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
+  justify-content: space-between;
 }
 
 .card {
