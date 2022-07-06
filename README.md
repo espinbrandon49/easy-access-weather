@@ -11,15 +11,23 @@ Deployed Link: https://espinbrandon49.github.io/easy-access-weather/
 
 ## Installation
 Runs in the browser
-Git clone - git@github.com:espinbrandon49/javaScriptQuiz.git
+Git clone - git@github.com:espinbrandon49/easy-access-weather.git
 
 ## Tools
 JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
 
 ### JavaScript
-The JavaScript for this quiz can be described in context of how I used the Web API to extend the functionality of the browser.
+* I set up and used an access key from [OpenWeather API](https://openweathermap.org/api) to access their data using the Fetch API 
 
-* I stored and retrieved data (high scores list) using local storage.
+* I reviewed the third party API's documentation to have knowledge of 
+  - the parameters available
+  - how the response is displayed
+  - how I should interpret the response
+  - various other parts of the API functionality such as how to recieve the response in imperial versus absolute units for example.
+
+* I made use of the API's functionality to make requests with specific parameters I needed and were available based on the API's documentation so that I mostly only retrieved data applicable to my weather dashboard.
+
+* I stored the search history using local storage
 
 * Document Object Model connects the HTML to my JavaScript by:
   - using event handlers for document click events
@@ -27,7 +35,7 @@ The JavaScript for this quiz can be described in context of how I used the Web A
   - accessing and manipulating form data, HTML, element values, element attributes, and computed/defined styling to dynamically receive input, render outputs, and store information
 
 * Used console extensively to: 
-  - diagnose problems with my JavaScript
+  - diagnose problems with my script
   - view the results of my functions before I inserted into the application.
   - ensure my code is executing in the right order by inspecting the variables in console at certain moments of time
  
@@ -36,12 +44,10 @@ The JavaScript for this quiz can be described in context of how I used the Web A
 * The structure of the HTML elements follow a logical structure that is key for DOM references, styling, and access to the elements from JS and CSS. 
 * The HTML follows best practices for class/id naming conventions, indentation, etc. so that I was able to:
  - concisely use the Document interfaces such as getElementById() in JavaScript to access the inputs/element data, display accurate outputs, and connect event handlers.
-* The HTML is referenced throughout the JS and CSS using the Web API .
+* The HTML is referenced throughout the JS and CSS using the web API .
 
 ### CSS
 * The application has responsive layout that adapts to your viewport on various screen sizes
-* Application user experience is intuitive and easy to navigate.
-* Application user interface style is clean and polished.
 
 ## Git/GitHub
 * The Application is deployed at a live URL and loads with no errors.
