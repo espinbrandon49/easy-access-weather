@@ -63,12 +63,12 @@ JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
 * Used DevTools to examine my box sizes, padding, borders, content, etc., and to view element styles in the browser.
 
 
-Collaboration
+## Collaboration
 Jerome Chenette
 
 ## Screenshots
-####  ![quizDemo1](./Assets/images/quizDemo1.gif)
+####  ![easy-access-weather](./Assets/images/easy-access-weather.gif)
 
-####  ![quizDemo2](./Assets/images/quizDemo2.gif)
+
 
 

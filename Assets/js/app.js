@@ -1,18 +1,18 @@
 const appid = 'c8eba1bdd27115a572cf54b8b1311b5c'
 let cityArr = ['']
-const searchInput = document.getElementById('searchInput')
-const savedCities = document.getElementById('savedCities')
 const currWeather = document.getElementById('currWeather')
 const forecast = document.getElementById('forecast')
+const searchInput = document.getElementById('searchInput')
+const savedCities = document.getElementById('savedCities')
+
 
 // Run weather search by city name when search button is clicked
 document.getElementById('searchBtn').addEventListener('click', () => {
   event.preventDefault()
-  // if search input is empty, display weather for last new city searched (default)
   !searchInput.value ? getUrl1(cityArr[cityArr.length - 1]) : getUrl1(searchInput.value)
 })
 
-// Retrieve latitude and longitude for, and run the function that gets weather data
+// Retrieve latitude and longitude for the function that gets weather data
 function getUrl1(searchVal) {
   // https://openweathermap.org/current#geocoding
   const requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${searchVal},USA&units=imperial&appid=${appid}`
@@ -22,7 +22,7 @@ function getUrl1(searchVal) {
     .then(function (response) {
       if (!response.ok) {
         alert(`${searchInput.value} is not a valid city name`)
-       return searchInput.value = ''
+        return searchInput.value = ''
       }
       return response.json();
     })
@@ -39,8 +39,7 @@ function getUrl1(searchVal) {
       // store city name
       setCiti()
     })
-    // console error msg
-    .catch(function(error) {
+    .catch(function (error) {
       console.error('Error')
     });
 }
@@ -65,57 +64,6 @@ function getUrl2(lat, lon) {
       // display 5-day weather forecast
       forecast.innerHTML = fiveDay(dataF.daily)
     });
-}
-
-// Store search
-function setCiti() {
-  if (!cityArr.includes(searchInput.value)) {
-    cityArr.push(searchInput.value)
-    addCity()
-  }
-  let store = JSON.stringify(cityArr)
-  localStorage.setItem('cities', store)
-  searchInput.value = ''
-}
-
-// Add new city to saved searches
-function addCity() {
-  const newCity = document.createElement('button')
-  newCity.setAttribute('class', 'cityBtn')
-  newCity.textContent = cityArr[cityArr.length - 1]
-  savedCities.appendChild(newCity)
-  newCity.addEventListener('click', () => {
-    getUrl1(newCity.textContent)
-  })
-}
-
-// Load previous searches 
-const getCities = (() => {
-  if (!localStorage.cities) {
-    cityArr.push('San Francisco')
-    let store = JSON.stringify(cityArr)
-    localStorage.setItem('cities', store)
-  } else {
-    cityArr = (JSON.parse(localStorage.getItem('cities')))
-    // populates cities searched 
-    citiesSearched()
-    // page loads with data from last new city searched (default)
-    getUrl1(cityArr[cityArr.length - 1])
-  }
-})//()
-
-// Create buttons to view weather from previous searches
-function citiesSearched() {
-  let newCityArr = cityArr.slice(1)
-  for (let i = 0; i < newCityArr.length; i++) {
-    const newCity = document.createElement('button')
-    newCity.setAttribute('class', 'cityBtn')
-    newCity.textContent = newCityArr[i]
-    savedCities.appendChild(newCity)
-    newCity.addEventListener('click', () => {
-      getUrl1(newCity.textContent)
-    })
-  }
 }
 
 // Create current city_name/date/weather_icon display
@@ -163,5 +111,53 @@ function fiveDay(arr) {
   return fiveDayCard
 }
 
-// README
-// clean up html
+// Create previous searches display (as buttons)
+function citiesSearched() {
+  let newCityArr = cityArr.slice(1)
+  for (let i = 0; i < newCityArr.length; i++) {
+    const newCity = document.createElement('button')
+    newCity.setAttribute('class', 'cityBtn')
+    newCity.textContent = newCityArr[i]
+    savedCities.appendChild(newCity)
+    newCity.addEventListener('click', () => {
+      getUrl1(newCity.textContent)
+    })
+  }
+}
+
+// Store search
+function setCiti() {
+  if (!cityArr.includes(searchInput.value)) {
+    cityArr.push(searchInput.value)
+    addCity()
+  }
+  let store = JSON.stringify(cityArr)
+  localStorage.setItem('cities', store)
+  searchInput.value = ''
+}
+
+// Add new city to saved searches
+function addCity() {
+  const newCity = document.createElement('button')
+  newCity.setAttribute('class', 'cityBtn')
+  newCity.textContent = cityArr[cityArr.length - 1]
+  savedCities.appendChild(newCity)
+  newCity.addEventListener('click', () => {
+    getUrl1(newCity.textContent)
+  })
+}
+
+// Load previous searches 
+const getCities = (() => {
+  if (!localStorage.cities) {
+    cityArr.push('San Francisco')
+    let store = JSON.stringify(cityArr)
+    localStorage.setItem('cities', store)
+  } else {
+    cityArr = (JSON.parse(localStorage.getItem('cities')))
+    // populates cities searched 
+    citiesSearched()
+    // page loads with data from last new city searched (default)
+    getUrl1(cityArr[cityArr.length - 1])
+  }
+})()

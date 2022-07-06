@@ -70,7 +70,7 @@ form>h2 {
 }
 
 #searchBtn {
-  background-image: url(/Assets/images/magnify.svg);
+  background-image: url(./Assets/images/magnify.svg);
   background-repeat: no-repeat;
   background-size: 1.25em;
   background-position: center;
@@ -119,6 +119,7 @@ form>h2 {
   border-radius: 4px;
   padding: 17px;
   line-height: 3;
+  
 }
 
 #cityName {
@@ -132,7 +133,7 @@ form>h2 {
 }
 
 #currWeather>p {
-  font-weight: 700;
+  font-size: 1.25em;
 }
 
 #uvi {
