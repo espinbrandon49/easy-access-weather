@@ -19,7 +19,7 @@
           <div id="searchBar">
             <input type="text" id="searchInput" placeholder="city" required>
             <label for="searchInput" required>
-              <button id='searchBtn' type="submit" alt="submit form">
+              <button id='searchBtn' type="submit" alt="submit search button">
                 <svg style="width:30px;height:30px" viewBox="0
                   0 24 24">
                   <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1
@@ -34,62 +34,16 @@
               </label>
             </div>
           </form>
-          <div id='savedCities'>
-     <!--<button class="cityBtn">Chicago</button>
-            <button class="cityBtn">New York</button>
-            <button class="cityBtn">San Francisco</button>
-            <button class="cityBtn">Los Angeles</button>
-            <button class="cityBtn">Harrisburg</button>
-            <button class="cityBtn">Philadelphia</button>
-            <button class="cityBtn">Detroit</button>
-            <button class="cityBtn">Salt Lake City</button>
-            <button class="cityBtn">New Orleans</button>-->
-          </div>
+          <div id='savedCities'></div>
         </section>
         <section id="weather">
           <article id="current">
-            <h2 id="cityName">Denver (09/09/1923)</h2>
-            <div id="currWeather">
-             <p>Temperature: 100 &#8457</p>
-              <p>Humidity: 75%</p>
-              <p>Wind: 16 MPH</p>
-              <p>UV Index: <span id='uvi'> 5.4 </span></p>
-            </div>
+            <h2 id="cityName"></h2>
+            <div id="currWeather"></div>
           </article>
           <article id="fiveDay">
             <h3>5-Day Forecast</h3>
-            <div id="forecast">
-            <div class="card${i} card">
-                <h4>8/16/2022</h4>
-                <p>SUNNY </p>
-                <p>Temp: 100 &#8457</p>
-                <p>Humidity: 90%</p>
-              </div>
-              <div class="card${i} card">
-                <p>8/16/2022</p>
-                <p>SUNNY </p>
-                <p>Temp: 100 &#8457</p>
-                <p>Humidity: 90%</p>
-              </div>
-              <div class="card${i} card">
-                <p>8/16/2022</p>
-                <p>SUNNY </p>
-                <p>Temp: 100 &#8457</p>
-                <p>Humidity: 90%</p>
-              </div>
-              <div class="card${i} card">
-                <p>8/16/2022</p>
-                <p>SUNNY </p>
-                <p>Temp: 100 &#8457</p>
-                <p>Humidity: 90%</p>
-              </div>
-              <div class="card${i} card">
-                <p>8/16/2022</p>
-                <p>SUNNY </p>
-                <p>Temp: 100 &#8457</p>
-                <p>Humidity: 90%</p>
-              </div> 
-            </div>
+            <div id="forecast"></div>
           </article>
         </section>
       </main>

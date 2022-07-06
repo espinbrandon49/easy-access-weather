@@ -8,12 +8,11 @@ const forecast = document.getElementById('forecast')
 // Run weather search by city name when search button is clicked
 document.getElementById('searchBtn').addEventListener('click', () => {
   event.preventDefault()
-  // if search input is empty, display default
+  // if search input is empty, display weather for last new city searched (default)
   !searchInput.value ? getUrl1(cityArr[cityArr.length - 1]) : getUrl1(searchInput.value)
-
 })
 
-// Retrieves latitude and longitude for, and runs the function that gets weather data
+// Retrieve latitude and longitude for, and run the function that gets weather data
 function getUrl1(searchVal) {
   // https://openweathermap.org/current#geocoding
   const requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${searchVal},USA&units=imperial&appid=${appid}`
@@ -22,16 +21,11 @@ function getUrl1(searchVal) {
   fetch(requestUrl1)
     .then(function (response) {
       if (!response.ok) {
-        //searchInput.value = '!!!city name'
-        searchInput.value = ''
-        return alert(`${searchInput.value} is not a valid city name`)
-        //return
+        alert(`${searchInput.value} is not a valid city name`)
+       return searchInput.value = ''
       }
-
       return response.json();
-
     })
-    // then
     .then(function (data) {
       // Use the console to examine the response
       console.log(data);
@@ -39,12 +33,13 @@ function getUrl1(searchVal) {
       // get the weather data
       getUrl2(data.coord.lat, data.coord.lon)
 
-      // display city name/time/weather icon
+      // display city name/time/weather_icon
       currCN(data.dt, data.name, data.weather[0].icon)
 
       // store city name
       setCiti()
     })
+    // console error msg
     .catch(function(error) {
       console.error('Error')
     });
@@ -55,12 +50,11 @@ function getUrl2(lat, lon) {
   // https://openweathermap.org/api/one-call-api
   var requestUrl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${appid}`
 
-  // fetches weather data
+  // fetch weather data
   fetch(requestUrl2)
     .then(function (response) {
       return response.json();
     })
-    //then
     .then(function (dataF) {
       // Use the console to examine the response
       console.log(dataF)
@@ -71,13 +65,6 @@ function getUrl2(lat, lon) {
       // display 5-day weather forecast
       forecast.innerHTML = fiveDay(dataF.daily)
     });
-}
-
-// Displays current city name/date above current weather
-function currCN(num, name, icon) {
-  const timestamp = num * 1000;
-  const formatted = moment(timestamp).format('(M/DD/YYYY)');
-  document.getElementById('cityName').innerHTML = `${name} ${formatted}<img class='weatherIcon' src="http://openweathermap.org/img/wn/${icon}@2x.png"/>`
 }
 
 // Store search
@@ -110,12 +97,12 @@ const getCities = (() => {
     localStorage.setItem('cities', store)
   } else {
     cityArr = (JSON.parse(localStorage.getItem('cities')))
-    // populates cities searched automatically
+    // populates cities searched 
     citiesSearched()
-    // curr weather loads with last new city searched automatically
+    // page loads with data from last new city searched (default)
     getUrl1(cityArr[cityArr.length - 1])
   }
-})()
+})//()
 
 // Create buttons to view weather from previous searches
 function citiesSearched() {
@@ -131,16 +118,21 @@ function citiesSearched() {
   }
 }
 
+// Create current city_name/date/weather_icon display
+function currCN(num, name, icon) {
+  const timestamp = num * 1000;
+  const formatted = moment(timestamp).format('(M/DD/YYYY)');
+  document.getElementById('cityName').innerHTML = `${name} ${formatted}<img class='weatherIcon' src="http://openweathermap.org/img/wn/${icon}@2x.png"/>`
+}
+
 // Create current weather display
 function currentWeather(arr, uv) {
- // document.getElementById('uvi')
   currWeather.innerHTML = (
     `<p>Temperature: ${arr.temp} \u00B0F</p> 
   <p>Humidity: ${arr.humidity}%</p> 
   <p>Wind: ${arr.wind_speed} MPH</p> 
   <p>UV Index: <span id='uvi'> ${arr.uvi} </span></p>`
   )
-
   // set color code for UV Index
   if (uv > 8) {
     uvi.setAttribute('style', 'background-color: red')
@@ -172,9 +164,6 @@ function fiveDay(arr) {
 }
 
 // README
-
 // cleanup CSS
 // clean up html
-// change repo name to something unique
-
 // erase media query info
