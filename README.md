@@ -3,15 +3,15 @@
 ## Description
 A weather dashboard to allow a user to see the weather outlook for multiple cities.  When the user searches for a city they are presented with current and five-day future conditions for that city and that city is added to the search history.  When a city in the search history is clicked then the user is again presented with current and future conditions.
 
-I used the [OpenWeather API](https://openweathermap.org/api) to retrive weather data for the cities. 
+I used the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for the cities. 
 
 GitHub repository: https://github.com/espinbrandon49/easy-access-weather
 
 Deployed Link: https://espinbrandon49.github.io/easy-access-weather/
 
 ## Installation
-Runs in the browser
-Git clone - git@github.com:espinbrandon49/easy-access-weather.git
+* Runs in the browser
+* Git clone - git@github.com:espinbrandon49/easy-access-weather.git
 
 ## Tools
 JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
@@ -19,20 +19,17 @@ JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
 ### JavaScript
 * I set up and used an access key from [OpenWeather API](https://openweathermap.org/api) to access their data using the Fetch API 
 
-* I reviewed the third party API's documentation to have knowledge of 
+* I reviewed the third party API's documentation to know and make use of functionality for 
   - the parameters available
-  - how the response is displayed
+  - the response display
   - how I should interpret the response
-  - various other parts of the API functionality such as how to recieve the response in imperial versus absolute units for example.
+  - various other parts of the functionality such as how to recieve the response in imperial versus absolute units for example.
 
 * I made use of the API's functionality to make requests with specific parameters I needed and were available based on the API's documentation so that I mostly only retrieved data applicable to my weather dashboard.
 
 * I stored the search history using local storage
 
-* Document Object Model connects the HTML to my JavaScript by:
-  - using event handlers for document click events
-  - accessing the HTML elements via the DOM
-  - accessing and manipulating form data, HTML, element values, element attributes, and computed/defined styling to dynamically receive input, render outputs, and store information
+* Document Object Model connects the HTML to my JavaScript
 
 * Used console extensively to: 
   - diagnose problems with my script
@@ -64,8 +61,8 @@ JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
 
 
 ## Collaboration
-Jerome Chenette
-
+### Jerome Chenette
+#
 ## Screenshots
 ####  ![easy-access-weather](./Assets/images/easy-access-weather.gif)
 

@@ -119,7 +119,6 @@ form>h2 {
   border-radius: 4px;
   padding: 17px;
   line-height: 3;
-  
 }
 
 #cityName {
@@ -174,10 +173,6 @@ form>h2 {
 
   #forecast {
     justify-content: center;
-  }
-
-  .card {
-    border: 1px solid blue;
   }
 
   #searchBar {
