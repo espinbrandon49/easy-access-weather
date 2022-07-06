@@ -19,20 +19,20 @@ JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
 ### JavaScript
 * I set up and used an access key from [OpenWeather API](https://openweathermap.org/api) to access their data using the Fetch API 
 
-* I reviewed the third party API's documentation to make use of functionality for 
+* I reviewed the third party API's documentation to make use of their functionality for 
   - the parameters available
   - the response display
   - how I should interpret the response
   - various other parts of the functionality such as how to recieve the response in imperial versus absolute units for example.
 
-* I made use of the API's functionality to make requests with specific parameters I needed and were available based on the API's documentation so that I mostly only retrieved data applicable to my weather dashboard.
+* I made use of the API's functionality to make requests with specific parameters I needed and were available based on the API's documentation so that I retrieved data applicable to my weather dashboard.
 
 * I stored the search history using local storage
 
 * Document Object Model connects the HTML to my JavaScript
 
 * Used console extensively to: 
-  - diagnose problems with my script
+  - diagnose problems with my JavaScript
   - view the results of my functions before I inserted into the application.
   - ensure my code is executing in the right order by inspecting the variables in console at certain moments of time
  
