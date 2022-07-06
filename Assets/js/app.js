@@ -11,7 +11,7 @@ document.getElementById('searchBtn').addEventListener('click', () => {
   !searchInput.value ? getUrl1(cityArr[cityArr.length - 1]) : getUrl1(searchInput.value)
 })
 
-// Retrieve latitude and longitude for the function that gets weather data
+// Fetch latitude and longitude for the function that gets weather data
 function getUrl1(searchVal) {
   // https://openweathermap.org/current#geocoding
   const requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${searchVal},USA&units=imperial&appid=${appid}`
@@ -19,10 +19,12 @@ function getUrl1(searchVal) {
   // fetch longitude and latitude
   fetch(requestUrl1)
     .then(function (response) {
+      // invalid city name
       if (!response.ok) {
         alert(`${searchInput.value} is not a valid city name`)
         return searchInput.value = ''
       }
+      // valid city name
       return response.json();
     })
     .then(function (data) {
@@ -43,7 +45,7 @@ function getUrl1(searchVal) {
     });
 }
 
-// Fetch current and five day weather forecast data
+// Fetch current and five day weather data
 function getUrl2(lat, lon) {
   // https://openweathermap.org/api/one-call-api
   var requestUrl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${appid}`
