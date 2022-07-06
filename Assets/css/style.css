@@ -70,25 +70,19 @@ form>h2 {
 }
 
 #searchBtn {
-  display: flex;
+  background-image: url(/Assets/images/magnify.svg);
+  background-repeat: no-repeat;
+  background-size: 1.25em;
+  background-position: center;
   border: 3px solid skyblue;
-  align-items: center;
-  justify-content: center;
   border-radius: 4px;
-  height: 40px;
-  width: 40px;
+  height: 45px;
+  width: 45px;
   background-color: var(--fillColor);
 }
 
 #searchBtn:hover {
   border: 1px solid cornflowerblue;
-}
-
-svg {
-  padding: 5px;
-  background-color: var(--fillColor);
-  color: white;
-  border-radius: 4px;
 }
 
 #savedCities {

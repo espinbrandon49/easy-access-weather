@@ -102,7 +102,7 @@ const getCities = (() => {
     // page loads with data from last new city searched (default)
     getUrl1(cityArr[cityArr.length - 1])
   }
-})//()
+})()
 
 // Create buttons to view weather from previous searches
 function citiesSearched() {
@@ -164,6 +164,4 @@ function fiveDay(arr) {
 }
 
 // README
-// cleanup CSS
 // clean up html
-// erase media query info
