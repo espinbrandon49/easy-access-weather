@@ -5,7 +5,6 @@ const forecast = document.getElementById('forecast')
 const searchInput = document.getElementById('searchInput')
 const savedCities = document.getElementById('savedCities')
 
-
 // Run weather search by city name when search button is clicked
 document.getElementById('searchBtn').addEventListener('click', () => {
   event.preventDefault()

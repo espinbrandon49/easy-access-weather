@@ -70,7 +70,7 @@ form>h2 {
 }
 
 #searchBtn {
-  background-image: url(./Assets/images/magnify.svg);
+  background-image: url(/magnify.svg);
   background-repeat: no-repeat;
   background-size: 1.25em;
   background-position: center;
