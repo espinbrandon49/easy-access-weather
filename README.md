@@ -19,7 +19,7 @@ JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
 ### JavaScript
 * I set up and used an access key from [OpenWeather API](https://openweathermap.org/api) to access their data using the Fetch API 
 
-* I reviewed the third party API's documentation to know and make use of functionality for 
+* I reviewed the third party API's documentation to make use of functionality for 
   - the parameters available
   - the response display
   - how I should interpret the response
@@ -39,12 +39,13 @@ JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
 ### HTML
 * The source code uses semantic HTML elements.
 * The structure of the HTML elements follow a logical structure that is key for DOM references, styling, and access to the elements from JS and CSS. 
-* The HTML follows best practices for class/id naming conventions, indentation, etc. so that I was able to:
- - concisely use the Document interfaces such as getElementById() in JavaScript to access the inputs/element data, display accurate outputs, and connect event handlers.
+* The HTML follows best practices for class/id naming conventions, indentation, etc. so that I was able to concisely use the Document interfaces such as getElementById() in JavaScript to access the inputs/element data, display accurate outputs, and connect event handlers.
 * The HTML is referenced throughout the JS and CSS using the web API .
 
 ### CSS
 * The application has responsive layout that adapts to your viewport on various screen sizes
+* Application user experience is intuitive and easy to navigate.
+* Application user interface style is clean and polished.
 
 ## Git/GitHub
 * The Application is deployed at a live URL and loads with no errors.
